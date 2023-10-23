@@ -23,7 +23,7 @@ Gui.ResetOnSpawn = false
 
 Gui.Name = tostring(math.random(0,9))..tostring(math.random(0,9))..tostring(math.random(0,9))..tostring(math.random(0,9))..tostring(math.random(0,9))..tostring(math.random(0,9))
 
-Gui.Parent = game.Players.LocalPlayer.PlayerGui
+Gui.Parent = game.CoreGui
 
 Camera:GetPropertyChangedSignal("ViewportSize"):Connect(function()
 	LineOrigin = GetLineOrigin(Camera)
