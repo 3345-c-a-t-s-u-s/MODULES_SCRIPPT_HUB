@@ -140,13 +140,8 @@ function Tracer_Esp:Tracer(Target:BasePart,CustomConfix:Custom_Confix)
 		if not CustomConfix.AutoDelete then
 			return
 		end
-		local checked = pcall(function()
-			if not Target or not Target.Parent or Target == "" or Target.Parent == "" or Target.Parent == nil or Target == nil then
-				del()
-			end
-		end)
-
-		if not checked then
+		
+		if not Target:IsDescendantOf(workspace) then
 			del()
 		end
 	end))
@@ -155,18 +150,8 @@ function Tracer_Esp:Tracer(Target:BasePart,CustomConfix:Custom_Confix)
 		if not CustomConfix.AutoDelete then
 			return
 		end
-		if lfr then
-			if not lfr.Parent and Target:IsDescendantOf(lfr) then
-				return del()
-			end
-		end
-		local checked = pcall(function()
-			if not Target or not Target.Parent or Target == "" or Target.Parent == "" or Target.Parent == nil or Target == nil then
-				return del()
-			end
-		end)
-
-		if not checked then
+		
+		if not Target:IsDescendantOf(workspace) then
 			del()
 		end
 	end))
