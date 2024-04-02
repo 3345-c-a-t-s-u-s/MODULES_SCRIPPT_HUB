@@ -173,8 +173,8 @@ function Tracer_Esp:Tracer(Target:BasePart,CustomConfix:Custom_Confix)
 
 		for i,v in ipairs(Tracer_Esp.LOOP_BINDS) do
 			if v[2] == NewLine then
-				v[3] = CustomConfix.Color
-				Tracer_Esp.LOOP_BINDS[i][3] = CustomConfix.Color
+				v[3] = NewCustomConfix.Color or CustomConfix.Color
+				Tracer_Esp.LOOP_BINDS[i][3] = NewCustomConfix.Color or CustomConfix.Color
 			end
 		end
 	end
