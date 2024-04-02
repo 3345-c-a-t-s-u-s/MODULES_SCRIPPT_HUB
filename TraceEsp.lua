@@ -74,9 +74,9 @@ function Tracer_Esp:Tracer(Target:BasePart,CustomConfix:Custom_Confix)
 	if not Target or typeof(Target)=="Vector3" or typeof(Target)=="CFrame" then
 		return
 	end
-	
+
 	task.wait()
-	
+
 	CustomConfix = CustomConfix or {}
 	CustomConfix.Color = CustomConfix.Color or Color3.fromRGB(255,255,255)
 	CustomConfix.AutoDelete = CustomConfix.AutoDelete
@@ -87,10 +87,10 @@ function Tracer_Esp:Tracer(Target:BasePart,CustomConfix:Custom_Confix)
 	NewLine.AnchorPoint = Vector2.new(.5, .5)
 	NewLine.Parent = Gui
 	NewLine.Transparency = Tracer_Esp.TranDex
-	
+
 	local bx = {}
 	local espui = nil
-	
+
 	if CustomConfix.AutoUpdate then
 		table.insert(Tracer_Esp.LOOP_BINDS,{Target,NewLine,CustomConfix.Color})	
 	end
@@ -99,14 +99,14 @@ function Tracer_Esp:Tracer(Target:BasePart,CustomConfix:Custom_Confix)
 		if not NewLine then
 			return
 		end
-		
+
 		NewLine.Visible = false
 		NewLine:Destroy()
-		
+
 		if espui ~= nil then
 			espui:Destroy()
 		end
-		
+
 		pcall(function()
 			if CustomConfix.AutoUpdate then
 				local index = Find(NewLine)
@@ -176,23 +176,24 @@ function Tracer_Esp:Tracer(Target:BasePart,CustomConfix:Custom_Confix)
 	function dex:Delete()
 		del()
 	end
-	
+
 	function dex:Edit(NewCustomConfix:Custom_Confix)
 		NewCustomConfix = NewCustomConfix or {}
 		NewCustomConfix.Color = NewCustomConfix.Color or Color3.fromRGB(255,255,255)
 		NewCustomConfix.AutoDelete = NewCustomConfix.AutoDelete
 		NewCustomConfix.AutoUpdate = NewCustomConfix.AutoUpdate
-		
+
 		CustomConfix.AutoUpdate = NewCustomConfix.AutoUpdate
 		CustomConfix.AutoDelete = CustomConfix.AutoDelete
 
 		for i,v in ipairs(Tracer_Esp.LOOP_BINDS) do
-			if v[2]==NewLine then
+			if v[2] == NewLine then
 				v[3] = CustomConfix.Color
+				Tracer_Esp.LOOP_BINDS[i][3] = CustomConfix.Color
 			end
 		end
 	end
-	
+
 	function dex:AddUIEsp(Name,Type,Color,On_Distance)
 		Color = Color or Color3.fromRGB(255, 255, 255)
 		local BillboardGui = Instance.new("BillboardGui")
@@ -220,9 +221,9 @@ function Tracer_Esp:Tracer(Target:BasePart,CustomConfix:Custom_Confix)
 		TextLabel.TextScaled = true
 		TextLabel.TextSize = 14.000
 		TextLabel.TextWrapped = true
-		
+
 		espui = BillboardGui
-		
+
 		if On_Distance then
 			coroutine.wrap(function()
 				while true do task.wait(0.1)
@@ -241,7 +242,7 @@ function Tracer_Esp:Tracer(Target:BasePart,CustomConfix:Custom_Confix)
 					end)
 				end
 			end)()
-			
+
 		else
 			if Type then
 				TextLabel.Text = tostring(Name)..tostring(" | ")..tostring(Type)
@@ -253,7 +254,7 @@ function Tracer_Esp:Tracer(Target:BasePart,CustomConfix:Custom_Confix)
 			end
 		end
 	end
-	
+
 	return dex
 end
 
